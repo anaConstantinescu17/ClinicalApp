@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_schema: clinic
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: create-drop
+        show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    table: clinic_schema_version
+server:
+  port: 8080
