@@ -1,40 +1,30 @@
 package com.clinic.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Table(name = "department")
 public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    public Integer id;
 
+    @Column(name = "name")
     private String name;
-    private String description;
-    private List<Doctor> doctors;
 
-    public Department(String name, String description, List<Doctor> doctors) {
-        this.name = name;
-        this.description = description;
-        this.doctors = doctors;
-    }
+    @Column(name = "description")
+    public String description;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
-    }
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = {"department"}, allowSetters = true)
+    public List<Doctor> doctors;
 }
