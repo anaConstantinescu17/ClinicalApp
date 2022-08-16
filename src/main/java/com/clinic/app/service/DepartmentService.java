@@ -32,8 +32,9 @@ public class DepartmentService {
                 .collect(Collectors.toList());
     }
 
-    public Department findById (String id) {
-        return departmentRepository.findById(id)
+    public DepartmentDTO findById (String id) {
+        Department department =  departmentRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department does not exist"));
+        return departmentMapper.toDto(department);
     }
 }

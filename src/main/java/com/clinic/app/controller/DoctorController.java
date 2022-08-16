@@ -4,7 +4,9 @@ import com.clinic.app.entity.Department;
 import com.clinic.app.entity.Doctor;
 import com.clinic.app.service.DepartmentService;
 import com.clinic.app.service.DoctorService;
+import com.clinic.app.service.dto.DepartmentDTO;
 import com.clinic.app.service.dto.DoctorDTO;
+import com.clinic.app.service.mapper.DepartmentMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +24,11 @@ public class DoctorController {
     }
 
     @PostMapping("/{departmentName}/save")
-    public ResponseEntity<?> save(@PathVariable String departmentName, @RequestBody DoctorDTO doctorDTO) {
+    public ResponseEntity<?> addDoctor (@PathVariable String departmentName, @RequestBody DoctorDTO doctorDTO) {
         try {
 
-            Department department = departmentService.findById(departmentName);
-            doctorService.save(department, doctorDTO);
+            DepartmentDTO departmentDTO = departmentService.findById(departmentName);
+            doctorService.addDoctor(departmentDTO, doctorDTO);
 
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
