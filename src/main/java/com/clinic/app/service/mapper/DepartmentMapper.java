@@ -1,5 +1,6 @@
 package com.clinic.app.service.mapper;
 
+import com.clinic.app.config.MapperConfig;
 import com.clinic.app.entity.Department;
 import com.clinic.app.service.dto.DepartmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,8 @@ import java.util.stream.Collectors;
 public class DepartmentMapper implements EntityMapper<DepartmentDTO, Department>{
 
     @Autowired
-    private DoctorMapper doctorMapper;
+    private MapperConfig mapperConfig;
+
 
     @Override
     public Department toEntity(DepartmentDTO dto) {
@@ -21,7 +23,7 @@ public class DepartmentMapper implements EntityMapper<DepartmentDTO, Department>
         entity.setDescription(dto.getDescription());
         entity.setDoctors(dto.getDoctorDTOList()
                 .stream()
-                .map(x -> doctorMapper.toEntity(x))
+                .map(x -> mapperConfig.getDoctorMapper().toEntity(x))
                 .collect(Collectors.toList()));
 
 
@@ -36,9 +38,9 @@ public class DepartmentMapper implements EntityMapper<DepartmentDTO, Department>
         dto.setDescription(entity.getDescription());
         dto.setDoctorDTOList(entity.getDoctors()
                 .stream()
-                .map(x -> doctorMapper.toDto(x))
+                .map(x -> mapperConfig.getDoctorMapper().toDto(x))
                 .collect(Collectors.toList()));
 
-        return null;
+        return dto;
     }
 }

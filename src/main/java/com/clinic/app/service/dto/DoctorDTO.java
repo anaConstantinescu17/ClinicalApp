@@ -15,7 +15,6 @@ import java.time.LocalTime;
 public class DoctorDTO {
     private String name;
     private String description;
-    private DepartmentDTO departmentDTO;
     private LocalTime startTime;
     private LocalTime endTime;
 }

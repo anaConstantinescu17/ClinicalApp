@@ -1,9 +1,12 @@
 package com.clinic.app.service;
 
+import com.clinic.app.entity.Department;
 import com.clinic.app.repository.DepartmentRepository;
 import com.clinic.app.service.dto.DepartmentDTO;
 import com.clinic.app.service.mapper.DepartmentMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -22,10 +25,15 @@ public class DepartmentService {
         this.departmentMapper = departmentMapper;
     }
 
-    private List<DepartmentDTO> getAllDepartments() {
+    public List<DepartmentDTO> getAllDepartments() {
         return StreamSupport
-                .stream(departmentRepository.findAll().spliterator(), true)
+                .stream(departmentRepository.findAll().spliterator(), false)
                 .map(departmentMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public Department findById (String id) {
+        return departmentRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department does not exist"));
     }
 }

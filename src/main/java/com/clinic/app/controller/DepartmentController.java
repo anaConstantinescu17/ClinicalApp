@@ -3,6 +3,7 @@ package com.clinic.app.controller;
 import com.clinic.app.service.DepartmentService;
 import com.clinic.app.service.dto.DepartmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,10 @@ public class DepartmentController {
 
     @GetMapping("/all")
     private ResponseEntity<List<DepartmentDTO>> getAllDepartments () {
-        return new ResponseEntity<>(departmentService.)
+        return new ResponseEntity<>(departmentService.getAllDepartments(), HttpStatus.OK);
     }
+    //getDoctorsFromDepartment
+    //add
+    //delete
+
 }

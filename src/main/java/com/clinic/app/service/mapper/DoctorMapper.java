@@ -1,5 +1,6 @@
 package com.clinic.app.service.mapper;
 
+import com.clinic.app.config.MapperConfig;
 import com.clinic.app.entity.Doctor;
 import com.clinic.app.service.dto.DoctorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,7 @@ import org.springframework.stereotype.Component;
 public class DoctorMapper implements EntityMapper<DoctorDTO, Doctor>{
 
     @Autowired
-    private DepartmentMapper departmentMapper;
-
+    private MapperConfig mapperConfig;
     @Override
     public Doctor toEntity(DoctorDTO dto) {
         Doctor entity = new Doctor();
@@ -19,7 +19,6 @@ public class DoctorMapper implements EntityMapper<DoctorDTO, Doctor>{
         entity.setDescription(dto.getDescription());
         entity.setStartTime(dto.getStartTime());
         entity.setEndTime(dto.getEndTime());
-        entity.setDepartment(departmentMapper.toEntity(dto.getDepartmentDTO()));
 
         return entity;
     }
@@ -31,8 +30,7 @@ public class DoctorMapper implements EntityMapper<DoctorDTO, Doctor>{
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
         dto.setStartTime(entity.getStartTime());
-        dto.setEndTime(dto.getEndTime());
-        dto.setDepartmentDTO(departmentMapper.toDto(entity.getDepartment()));
+        dto.setEndTime(entity.getEndTime());
 
         return dto;
     }

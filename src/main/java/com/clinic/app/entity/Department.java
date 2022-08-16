@@ -9,15 +9,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+
 @EqualsAndHashCode
 @Table(name = "department")
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-    public Integer id;
-
     @Column(name = "name")
     private String name;
 
@@ -25,6 +21,14 @@ public class Department {
     public String description;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = {"department"}, allowSetters = true)
     public List<Doctor> doctors;
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", doctors=" + doctors +
+                '}';
+    }
 }
