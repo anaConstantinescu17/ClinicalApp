@@ -33,11 +33,10 @@ public class DoctorController {
             DepartmentDTO departmentDTO = departmentService.findById(departmentName);
             doctorService.addDoctor(departmentDTO, doctorDTO);
 
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(path = "/{id}/delete", method=RequestMethod.DELETE)

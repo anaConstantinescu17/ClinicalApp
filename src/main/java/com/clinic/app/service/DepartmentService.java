@@ -31,7 +31,6 @@ public class DepartmentService {
         this.doctorMapper = doctorMapper;
     }
 
-    @Transactional
     public List<DepartmentDTO> getAllDepartments() {
         return StreamSupport
                 .stream(departmentRepository.findAll().spliterator(), false)
@@ -39,37 +38,33 @@ public class DepartmentService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+
     public DepartmentDTO findById (String id) {
         Department department =  departmentRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department does not exist"));
         return departmentMapper.toDto(department);
     }
 
-    @Transactional
-    public List<DoctorDTO> getDepartmentDoctors(String department) {
-        Department department1 = departmentRepository.findById(department)
+    public List<DoctorDTO> getDepartmentDoctors(String department_name) {
+        Department department = departmentRepository.findById(department_name)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department does not exist"));
 
-        return StreamSupport
-                .stream(department1.getDoctors().spliterator(), false)
+        return department.getDoctors().stream()
                 .map(doctorMapper::toDto)
                 .collect(Collectors.toList());
 
     }
 
-    @Transactional
     public void deleteById(String id) throws Exception {
         if(departmentRepository.existsById(id)) {
             departmentRepository.deleteById(id);
         } else {
-            throw new Exception("id not found");
+            throw new Exception("Department not found");
         }
     }
 
-    @Transactional
-    public Department addDepartment(DepartmentDTO departmentDTO) {
+    public void addDepartment(DepartmentDTO departmentDTO) {
         Department department = departmentMapper.toEntity(departmentDTO);
-        return departmentRepository.save(department);
+        departmentRepository.save(department);
     }
 }

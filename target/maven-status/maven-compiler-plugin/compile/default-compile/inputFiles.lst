@@ -1,0 +1,15 @@
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/controller/DoctorController.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/mapper/EntityMapper.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/mapper/DepartmentMapper.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/ClinicApp.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/DepartmentService.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/DoctorService.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/config/MapperConfig.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/dto/DepartmentDTO.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/dto/DoctorDTO.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/service/mapper/DoctorMapper.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/repository/DoctorRepository.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/entity/Department.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/entity/Doctor.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/repository/DepartmentRepository.java
+/Users/andrei-mihaicanuta/IdeaProjects/ClinicalProject/ClinicalApp/src/main/java/com/clinic/app/controller/DepartmentController.java

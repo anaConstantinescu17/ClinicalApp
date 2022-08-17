@@ -21,7 +21,8 @@ public class DepartmentMapper implements EntityMapper<DepartmentDTO, Department>
 
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
-        entity.setDoctors(dto.getDoctorDTOList()
+
+        entity.setDoctors(dto.getDoctorDTOList() == null ? null : dto.getDoctorDTOList()
                 .stream()
                 .map(x -> mapperConfig.getDoctorMapper().toEntity(x))
                 .collect(Collectors.toList()));
@@ -36,7 +37,7 @@ public class DepartmentMapper implements EntityMapper<DepartmentDTO, Department>
 
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
-        dto.setDoctorDTOList(entity.getDoctors()
+        dto.setDoctorDTOList(entity.getDoctors()== null ? null : entity.getDoctors()
                 .stream()
                 .map(x -> mapperConfig.getDoctorMapper().toDto(x))
                 .collect(Collectors.toList()));
