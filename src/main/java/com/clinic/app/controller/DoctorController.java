@@ -11,8 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/doctors")
 public class DoctorController {
 
     public final DoctorService doctorService;
@@ -37,7 +40,18 @@ public class DoctorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //getAllDoctors /api/doctors
-    //getDoctorsByDepartment /api/{}/all
-    //delete
+    @RequestMapping(path = "/{id}/delete", method=RequestMethod.DELETE)
+    public ResponseEntity<?> deleteById(@PathVariable("id") Integer id) {
+        try {
+            doctorService.deleteById(id);
+            return new ResponseEntity<>("Doctor deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DoctorDTO>> getAllDoctors () {
+        return new ResponseEntity<>(doctorService.getAllDoctors(), HttpStatus.OK);
+    }
 }

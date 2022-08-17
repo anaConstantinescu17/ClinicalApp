@@ -12,8 +12,8 @@ spring:
     password: postgres
   flyway:
     enabled: true
-    baseline-on-migrate: true
-    baseline-version: 0
+    baselineOnMigrate: true
+    validateOnMigrate: false
     table: clinic_schema_version
 server:
-  port: 8080
+  port: 8081

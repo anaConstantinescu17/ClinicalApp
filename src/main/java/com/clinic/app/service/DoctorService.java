@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @Transactional
@@ -27,6 +30,7 @@ public class DoctorService {
         this.departmentMapper = departmentMapper;
     }
 
+    @Transactional
     public void addDoctor (DepartmentDTO departmentDTO, DoctorDTO doctorDTO) {
         Doctor doctor = doctorMapper.toEntity(doctorDTO);
         Department department = departmentMapper.toEntity(departmentDTO);
@@ -34,4 +38,22 @@ public class DoctorService {
 
         doctorRepository.save(doctor);
     }
+
+    @Transactional
+    public List<DoctorDTO> getAllDoctors() {
+        return StreamSupport
+                .stream(doctorRepository.findAll().spliterator(), false)
+                .map(doctorMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteById(Integer id) throws Exception {
+        if(doctorRepository.existsById(id)) {
+            doctorRepository.deleteById(id);
+        } else {
+            throw new Exception("id not found");
+        }
+    }
+
 }
