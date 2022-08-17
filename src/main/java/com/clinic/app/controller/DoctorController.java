@@ -26,23 +26,25 @@ public class DoctorController {
         this.departmentService = departmentService;
     }
 
-    @PostMapping("/{departmentName}/save")
+    @PostMapping("/{departmentName}/add")
     public ResponseEntity<?> addDoctor (@PathVariable String departmentName, @RequestBody DoctorDTO doctorDTO) {
         try {
 
             DepartmentDTO departmentDTO = departmentService.findById(departmentName);
             doctorService.addDoctor(departmentDTO, doctorDTO);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Doctor added", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
-    @RequestMapping(path = "/{id}/delete", method=RequestMethod.DELETE)
-    public ResponseEntity<?> deleteById(@PathVariable("id") Integer id) {
+    @RequestMapping(path = "/{departmentName}/delete", method=RequestMethod.DELETE)
+    public ResponseEntity<?> deleteById(@PathVariable String departmentName, @RequestBody DoctorDTO doctorDTO) {
         try {
-            doctorService.deleteById(id);
+            DepartmentDTO departmentDTO = departmentService.findById(departmentName);
+            doctorService.deleteDoctor(departmentDTO, doctorDTO);
+
             return new ResponseEntity<>("Doctor deleted", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

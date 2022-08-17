@@ -31,12 +31,17 @@ public class DoctorService {
     }
 
     @Transactional
-    public void addDoctor (DepartmentDTO departmentDTO, DoctorDTO doctorDTO) {
+    public void addDoctor (DepartmentDTO departmentDTO, DoctorDTO doctorDTO) throws Exception{
+
         Doctor doctor = doctorMapper.toEntity(doctorDTO);
         Department department = departmentMapper.toEntity(departmentDTO);
         doctor.setDepartment(department);
 
-        doctorRepository.save(doctor);
+        if(doctorRepository.findByNameAndDepartment(doctor.getName(), doctor.getDepartment()) != null) {
+            throw new Exception("Doctor already exists");
+        } else {
+            doctorRepository.save(doctor);
+        }
     }
 
     @Transactional
@@ -48,11 +53,16 @@ public class DoctorService {
     }
 
     @Transactional
-    public void deleteById(Integer id) throws Exception {
-        if(doctorRepository.existsById(id)) {
-            doctorRepository.deleteById(id);
+    public void deleteDoctor(DepartmentDTO departmentDTO, DoctorDTO doctorDTO) throws Exception {
+
+        Doctor doctor = doctorMapper.toEntity(doctorDTO);
+        Department department = departmentMapper.toEntity(departmentDTO);
+        doctor.setDepartment(department);
+
+        if(doctorRepository.findByNameAndDepartment(doctor.getName(), doctor.getDepartment()) == null) {
+            throw new Exception("Doctor does not exist");
         } else {
-            throw new Exception("id not found");
+            doctorRepository.deleteByNameAndDepartment(doctor.getName(), doctor.getDepartment());
         }
     }
 

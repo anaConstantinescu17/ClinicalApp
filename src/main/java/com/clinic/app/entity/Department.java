@@ -20,7 +20,7 @@ public class Department {
     @Column(name = "description")
     public String description;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, orphanRemoval = true)
     public List<Doctor> doctors;
 
     @Override
