@@ -4,7 +4,7 @@ import Department from './Department';
 
 export default class DepartmentList extends Component{
 	render() {
-		const departments = this.props.departments.map(department =>
+		const departments = this.props.departments.forEach(department =>
 			<Department key={department.name} department={department}/>
 		);
 		return (

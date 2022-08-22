@@ -4,7 +4,7 @@ spring:
       hibernate:
         default_schema: clinic
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        ddl-auto: create-drop
+        ddl-auto: false
         show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
