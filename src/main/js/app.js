@@ -15,7 +15,6 @@ const App = () => {
       const data = await request.json();
       setDepartments(data);
     };
-    getDepartmentsData();
   }, []);
   return (
     // <Router>
