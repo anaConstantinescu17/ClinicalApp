@@ -1,43 +1,39 @@
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import Layout from "./Layout";
+import Header from "./Header";
+import Departments from "./Departments";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const { Component } = require('react');
-const React = require('react');
-import DepartmentList from './DepartmentList'
+const App = () => {
+  const [departments, setDepartments] = useState([]);
+  const [doctors, setDoctors] = useState();
 
-console.log("here before APP");
-class App extends Component {
+  useEffect(() => {
+    const getDepartmentsData = async () => {
+      const request = await fetch("/api/department/all");
+      const data = await request.json();
+      setDepartments(data);
+    };
+    getDepartmentsData();
+  }, []);
+  return (
+    // <Router>
+    //   <Layout>
+    //     <Routes>
+    //       <Route exact path="/" element={<Header />} />
+    //       <Route exact path="/#/departments" element={<Departments />} />
+    //     </Routes>
+    //   </Layout>
+    // </Router>
 
-	constructor(props) {
-		console.log("run App constructor()")
-		super(props);
-		this.state = {departments: [
-				{
-					"name": "ORL",
-					"description": "Orl description",
-				},
-				{
-					"name": "Stomatologie",
-					"description": "Stomatologie description",
-				}
-			]};
-		console.log(this.state.departments);
-	}
+    <Layout>
+      <Header />
+      <Departments departments={departments} />
+    </Layout>
+  );
+};
 
-	componentDidMount() {
-		/*client({method: 'GET', path: '/api/department/all'}).done(response => {
-			this.setState({departments: response});
-		});*/
-	}
+export default App;
 
-	render() {
-		console.log("run App render()");
-		return (
-		    <div>DepartmentList
-			    <DepartmentList departments={this.state.departments}/>
-			</div>
-		)
-	}
-}
-
-ReactDOM.render(<App/>,document.getElementById('react'));
-
+ReactDOM.render(<App />, document.getElementById("react"));

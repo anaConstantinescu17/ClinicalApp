@@ -1,13 +1,24 @@
-const { Component } = require("react");
+import React, { useState } from "react";
+import Button from "./Button";
 
-class Department extends Component{
-	render() {
-		return (
-			<tr>
-				<td>{this.props.department.name}</td>
-				<td>{this.props.department.description}</td>
-			</tr>
-		)
-	}
-}
+const Department = ({ name, description }) => {
+  const [isHover, setIsHover] = useState(false);
+
+  return (
+    <div
+      className="department-card"
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+    >
+      <h1>{name}</h1>
+      <p>{description}</p>
+      {isHover && <button className="delete-department-btn">X</button>}
+      <Button
+        onClick={() => console.log("dasd")}
+        btnText="Check the department"
+      />
+    </div>
+  );
+};
+
 export default Department;

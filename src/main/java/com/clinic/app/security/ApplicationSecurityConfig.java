@@ -36,7 +36,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 http
                         .csrf().disable()
                         .authorizeRequests()
-                        .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                        .antMatchers("/", "index", "/css/*", "/js/*", "/departments").permitAll()
                         .antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority(USER_WRITE.getPermission())
                         .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(USER_WRITE.getPermission())
                         .antMatchers(HttpMethod.PUT, "/api/**").hasAuthority(USER_WRITE.getPermission())
