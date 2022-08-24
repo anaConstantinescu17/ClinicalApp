@@ -8,14 +8,34 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const App = () => {
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState();
+  const [btnText, setBtnTxt] = useState("Departments");
 
-  useEffect(() => {
-    const getDepartmentsData = async () => {
-      const request = await fetch("/api/department/all");
-      const data = await request.json();
-      setDepartments(data);
-    };
-  }, []);
+  const getDepartmentsData = async () => {
+    const request = await fetch("/api/department/all");
+    const data = await request.json();
+    setDepartments(data);
+  };
+
+  const removeStateDepartment = (departmentName) => {
+    const newDepartments = departments.filter(
+      (department) => department.name !== departmentName
+    );
+    setDepartments(newDepartments);
+  };
+
+  const handleBtnClick = () => {
+    switch (btnText) {
+      case "Departments": {
+        getDepartmentsData();
+        setBtnTxt("Add Department");
+        break;
+      }
+      case "Add Department": {
+        console.log("Working on it...");
+        break;
+      }
+    }
+  };
   return (
     // <Router>
     //   <Layout>
@@ -27,8 +47,11 @@ const App = () => {
     // </Router>
 
     <Layout>
-      <Header />
-      <Departments departments={departments} />
+      <Header action={handleBtnClick} btnText={btnText} />
+      <Departments
+        departments={departments}
+        removeStateDepartment={removeStateDepartment}
+      />
     </Layout>
   );
 };
