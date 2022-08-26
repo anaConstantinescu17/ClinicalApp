@@ -24,7 +24,7 @@ public class HomeController {
     public ResponseEntity<?> customerPage() {
         try {
             return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
-                    .location(URI.create("/#/departments"))
+                    .location(URI.create("/departments"))
                     .build();
         } catch (Exception e) {
             System.out.println(e.toString());

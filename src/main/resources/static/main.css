@@ -8,6 +8,9 @@
   display: flex;
   flex-direction: column;
   background: rgba(26, 26, 29, 0.85);
+  height: 100vh;
+  overflow: auto;
+  position: relative;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -92,4 +95,24 @@
   cursor: pointer;
   background: transparent;
   color: white;
+}
+
+.form-wrapper {
+  display: flex;
+  z-index: +1;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 26, 29, 0.6);
+  border: 1px solid rgba(26, 26, 29, 0.6);
+  justify-content: space-between;
+}
+
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
