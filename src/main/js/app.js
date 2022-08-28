@@ -39,41 +39,41 @@ const App = () => {
     }
   };
   return (
-    <Layout>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          //   element={<Header action={handleBtnClick} btnText={btnText} />}
-          // />
-          element={<div>header</div>}
-        />
-        <Route
-          exact
-          path="/departments"
-          element={
-            // <Departments
-            //   artments={departments}
-            //   removeStateDepartment={removeStateDepartment}
-            // />
-            <div>dep</div>
-          }
-        />
-      </Routes>
-    </Layout>
-
     // <Layout>
-    //   <Header action={handleBtnClick} btnText={btnText} />
-    //   <Departments
-    //     departments={departments}
-    //     removeStateDepartment={removeStateDepartment}
-    //   />
-    //   <AddForm
-    //     isOpen={departmentForm}
-    //     close={() => setDepartmentForm(false)}
-    //     resetDepartments={() => getDepartmentsData()}
-    //   />
+    //   <Routes>
+    //     <Route
+    //       exact
+    //       path="/"
+    //          element={<Header action={handleBtnClick} btnText={btnText} />}
+          
+    //      // element={<div>header</div>}
+    //     />
+    //     <Route
+    //       exact
+    //       path="/departments"
+    //       element={
+    //         // <Departments
+    //         //   artments={departments}
+    //         //   removeStateDepartment={removeStateDepartment}
+    //         // />
+    //         <div>dep</div>
+    //       }
+    //     />
+    //   </Routes>
     // </Layout>
+
+    <Layout>
+      <Header action={handleBtnClick} btnText={btnText} />
+      <Departments
+        departments={departments}
+        removeStateDepartment={removeStateDepartment}
+      />
+      <AddForm
+        isOpen={departmentForm}
+        close={() => setDepartmentForm(false)}
+        resetDepartments={() => getDepartmentsData()}
+      />
+    </Layout>
   );
 };
 
