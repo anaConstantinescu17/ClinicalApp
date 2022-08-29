@@ -6,6 +6,7 @@ const Departments = ({
   removeStateDepartment,
   getDoctorsData,
   setBtnTxt,
+  setCurrentDepartmentName,
 }) => {
   const [department, setDepartment] = useState();
   const handleDeleteDepartment = async (departmentName) => {
@@ -24,6 +25,7 @@ const Departments = ({
           deleteDepartment={handleDeleteDepartment}
           getDoctorsData={getDoctorsData}
           setBtnTxt={setBtnTxt}
+          setCurrentDepartmentName={setCurrentDepartmentName}
         />
       ))}
     </div>

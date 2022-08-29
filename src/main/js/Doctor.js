@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-const Doctor = ({ name, description, startTime, endTime }) => {
+const Doctor = ({
+  name,
+  description,
+  startTime,
+  endTime,
+  handleDeleteDoctor,
+  currentDepartmentName,
+}) => {
   const [isHoverDoctor, setIsHoverDoctor] = useState(false);
   return (
     <div
@@ -15,7 +22,7 @@ const Doctor = ({ name, description, startTime, endTime }) => {
       <p>{endTime}</p>
       {isHoverDoctor && (
         <button
-          onClick={() => console.log("click")}
+          onClick={() => handleDeleteDoctor(currentDepartmentName)}
           className="delete-department-btn"
         >
           X

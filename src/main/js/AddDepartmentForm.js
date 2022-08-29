@@ -24,16 +24,16 @@ const AddDepartmentForm = ({ isOpen, close, resetDepartments }) => {
     resetDepartments();
   };
 
-  const styles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-  };
+  // const styles = {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   height: "100vh",
+  // };
 
   if (!isOpen) return null;
   return (
-    <div className="form-wrapper" style={styles}>
+    <div className="form-wrapper">
       <button onClick={() => close()} className="delete-department-btn">
         X
       </button>

@@ -4,15 +4,18 @@ import Layout from "./Layout";
 import Header from "./Header";
 import Departments from "./Departments";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import AddForm from "./AddDepartmentForm";
+import AddDepartmentForm from "./AddDepartmentForm";
 import Doctors from "./Doctors";
+import AddDoctorForm from "./AddDoctorForm";
 
 const App = () => {
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [btnText, setBtnTxt] = useState("Departments");
   const [departmentForm, setDepartmentForm] = useState(false);
+  const [doctorForm, setDoctorForm] = useState(false);
   const [showDepartments, setShowDepartments] = useState(true);
+  const [currentDepartmentName, setCurrentDepartmentName] = useState("");
 
   const getDepartmentsData = async () => {
     const request = await fetch("/api/department/all");
@@ -46,7 +49,7 @@ const App = () => {
         break;
       }
       case "Add Doctor": {
-        console.log("addDoc");
+        setDoctorForm(true);
         break;
       }
     }
@@ -82,7 +85,7 @@ const App = () => {
         btnText={btnText}
         action2={setShowDepartments}
         showDepartments={showDepartments}
-        setBtnTxt = {setBtnTxt}
+        setBtnTxt={setBtnTxt}
       />
 
       {showDepartments && (
@@ -91,15 +94,29 @@ const App = () => {
           removeStateDepartment={removeStateDepartment}
           getDoctorsData={getDoctorsData}
           setBtnTxt={setBtnTxt}
+          setCurrentDepartmentName={setCurrentDepartmentName}
         />
       )}
-      <AddForm
+      <AddDepartmentForm
         isOpen={departmentForm}
         close={() => setDepartmentForm(false)}
         resetDepartments={() => getDepartmentsData()}
       />
 
-      {!showDepartments && <Doctors doctors={doctors} />}
+      <AddDoctorForm
+        isOpen={doctorForm}
+        close={() => setDoctorForm(false)}
+        resetDoctors={() => getDoctorsData(currentDepartmentName)}
+        currentDepartmentName={currentDepartmentName}
+      />
+
+      {!showDepartments && (
+        <Doctors
+          doctors={doctors}
+          currentDepartmentName={currentDepartmentName}
+          getDoctorsData={getDepartmentsData}
+        />
+      )}
     </Layout>
   );
 };

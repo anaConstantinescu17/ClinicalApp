@@ -7,6 +7,7 @@ const Department = ({
   deleteDepartment,
   getDoctorsData,
   setBtnTxt,
+  setCurrentDepartmentName,
 }) => {
   const [isHover, setIsHover] = useState(false);
 
@@ -27,7 +28,11 @@ const Department = ({
         </button>
       )}
       <Button
-        action={() => (getDoctorsData(name), setBtnTxt("Add Doctor"))}
+        action={() => (
+          getDoctorsData(name),
+          setBtnTxt("Add Doctor"),
+          setCurrentDepartmentName(name)
+        )}
         btnText="Check the department"
       />
     </div>

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const AddDoctorForm = ({ isOpen, close, departmentName, resetDoctors}) => {
+const AddDoctorForm = ({
+  isOpen,
+  close,
+  currentDepartmentName,
+  resetDoctors,
+}) => {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -13,7 +18,7 @@ const AddDoctorForm = ({ isOpen, close, departmentName, resetDoctors}) => {
     event.preventDefault();
 
     console.log(JSON.stringify(inputs));
-    await fetch(`/api/doctors/${departmentName}/add`, {
+    await fetch(`/api/doctors/${currentDepartmentName}/add`, {
       method: "POST",
       body: JSON.stringify(inputs),
       headers: {
@@ -21,19 +26,19 @@ const AddDoctorForm = ({ isOpen, close, departmentName, resetDoctors}) => {
       },
     });
     close();
-    resetDepartments();
+    resetDoctors();
   };
 
-  const styles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-  };
+  // const styles = {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   height: "100vh",
+  // };
 
   if (!isOpen) return null;
   return (
-    <div className="form-wrapper" style={styles}>
+    <div className="form-wrapper">
       <button onClick={() => close()} className="delete-department-btn">
         X
       </button>

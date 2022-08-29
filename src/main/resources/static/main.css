@@ -113,6 +113,7 @@
   height: 100vh;
   width: 100vw;
   overflow: auto;
+  z-index: +1;
 }
 
 .form-wrapper form {
@@ -143,7 +144,7 @@
   top: 0;
   left: 0;
 }
- 
+
 .box {
   position: relative;
   width: 70%;
@@ -157,9 +158,9 @@
   border: 1px solid #999;
   overflow: auto;
 }
- 
+
 .close-icon {
-  content: 'x';
+  content: "x";
   cursor: pointer;
   position: fixed;
   right: calc(15% - 30px);
