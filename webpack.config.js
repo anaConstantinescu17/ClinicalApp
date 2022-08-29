@@ -23,6 +23,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(woff2?|ttf|svg|eot|png|jpe?g|gif)$/,
+        include: [path.resolve(__dirname, "src/main/resources/static/images")],
+        use: {
+          loader: "file-loader",
+          options: { name: "[name]-[contenthash].[ext]" },
+        },
+      },
     ],
   },
   //   devServer: {

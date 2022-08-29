@@ -1,12 +1,14 @@
 import React from "react";
 import Button from "./Button";
-import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ action, btnText, action2, showDepartments, setBtnTxt }) => {
   return (
     <div className="app-header">
       <h2 className="title">Unconventional clinic</h2>
-      <Button btnText="Departments" action={() => console.log("Clicked!")} />
+      {!showDepartments && (
+        <Button btnText="Departments" action={() => (setBtnTxt("Add Department"), action2(true))} />
+      )}
+      <Button btnText={btnText} action={() => action()} />
     </div>
   );
 };
