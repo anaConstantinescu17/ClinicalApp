@@ -20,16 +20,16 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping(path = "/departments", produces = MediaType.TEXT_HTML_VALUE)
-    public ResponseEntity<?> customerPage() {
-        try {
-            return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
-                    .location(URI.create("/departments"))
-                    .build();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            throw new RuntimeException(e);
-        }
-    }
+//    @GetMapping(path = "/departments", produces = MediaType.TEXT_HTML_VALUE)
+//    public ResponseEntity<?> customerPage() {
+//        try {
+//            return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT)
+//                    .location(URI.create("/departments"))
+//                    .build();
+//        } catch (Exception e) {
+//            System.out.println(e.toString());
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 }

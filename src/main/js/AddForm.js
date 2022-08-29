@@ -25,19 +25,18 @@ const AddForm = ({ isOpen, close, resetDepartments }) => {
   };
 
   const styles = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
   };
 
   if (!isOpen) return null;
   return (
-    <div className="form-wrapper"
-         style={styles}>
-      <button onClick={() => close()}
-              className="delete-department-btn"
-      >X</button>
+    <div className="form-wrapper" style={styles}>
+      <button onClick={() => close()} className="delete-department-btn">
+        X
+      </button>
       <form onSubmit={handleSubmit}>
         <label>
           <h2 className="title">Enter department:</h2>
@@ -54,8 +53,8 @@ const AddForm = ({ isOpen, close, resetDepartments }) => {
         <br></br>
         <br></br>
         <label>
-        <h2 className="title">Enter description:</h2>
-        <br></br>
+          <h2 className="title">Enter description:</h2>
+          <br></br>
           <input
             type="text"
             name="description"
@@ -66,10 +65,7 @@ const AddForm = ({ isOpen, close, resetDepartments }) => {
         </label>
         <br></br>
         <br></br>
-        <input type="submit" 
-              value="Submit"
-              className="actionBtn"
-              />
+        <input type="submit" value="Submit" className="actionBtn" />
       </form>
     </div>
   );
