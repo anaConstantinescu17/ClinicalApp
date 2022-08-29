@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-const Department = ({ name, description, deleteDepartment }) => {
+const Department = ({
+  name,
+  description,
+  deleteDepartment,
+  getDoctorsData,
+  setBtnTxt,
+}) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -21,7 +27,7 @@ const Department = ({ name, description, deleteDepartment }) => {
         </button>
       )}
       <Button
-        onClick={() => console.log("dasd")}
+        action={() => getDoctorsData(name) && setBtnTxt("Add Doctor")}
         btnText="Check the department"
       />
     </div>

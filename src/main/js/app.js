@@ -5,17 +5,26 @@ import Header from "./Header";
 import Departments from "./Departments";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AddForm from "./AddForm";
+import Doctors from "./Doctors";
 
 const App = () => {
   const [departments, setDepartments] = useState([]);
-  const [doctors, setDoctors] = useState();
+  const [doctors, setDoctors] = useState([]);
   const [btnText, setBtnTxt] = useState("Departments");
   const [departmentForm, setDepartmentForm] = useState(false);
+  const [showDepartments, setShowDepartments] = useState(true);
 
   const getDepartmentsData = async () => {
     const request = await fetch("/api/department/all");
     const data = await request.json();
     setDepartments(data);
+  };
+
+  const getDoctorsData = async (departmentName) => {
+    const request = await fetch(`/api/department/${departmentName}/doctors`);
+    const data = await request.json();
+    setDoctors(data);
+    setShowDepartments(false);
   };
 
   const removeStateDepartment = (departmentName) => {
@@ -36,6 +45,10 @@ const App = () => {
         setDepartmentForm(true);
         break;
       }
+      case "Add Doctor": {
+        console.log("addDoc");
+        break;
+      }
     }
   };
   return (
@@ -45,7 +58,7 @@ const App = () => {
     //       exact
     //       path="/"
     //          element={<Header action={handleBtnClick} btnText={btnText} />}
-          
+
     //      // element={<div>header</div>}
     //     />
     //     <Route
@@ -64,15 +77,22 @@ const App = () => {
 
     <Layout>
       <Header action={handleBtnClick} btnText={btnText} />
-      <Departments
-        departments={departments}
-        removeStateDepartment={removeStateDepartment}
-      />
+
+      {showDepartments && (
+        <Departments
+          departments={departments}
+          removeStateDepartment={removeStateDepartment}
+          getDoctorsData={getDoctorsData}
+          setBtnTxt={setBtnTxt}
+        />
+      )}
       <AddForm
         isOpen={departmentForm}
         close={() => setDepartmentForm(false)}
         resetDepartments={() => getDepartmentsData()}
       />
+
+      {!showDepartments && <Doctors doctors={doctors} />}
     </Layout>
   );
 };

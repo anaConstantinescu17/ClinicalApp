@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Department from "./Department";
 
-const Departments = ({ departments, removeStateDepartment }) => {
+const Departments = ({
+  departments,
+  removeStateDepartment,
+  getDoctorsData,
+  setBtnTxt,
+}) => {
   const [department, setDepartment] = useState();
   const handleDeleteDepartment = async (departmentName) => {
     await fetch(`/api/department/${departmentName}/delete`, {
@@ -17,6 +22,8 @@ const Departments = ({ departments, removeStateDepartment }) => {
           name={department.name}
           description={department.description}
           deleteDepartment={handleDeleteDepartment}
+          getDoctorsData={getDoctorsData}
+          setBtnTxt={setBtnTxt}
         />
       ))}
     </div>
