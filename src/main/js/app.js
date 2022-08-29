@@ -114,7 +114,7 @@ const App = () => {
         <Doctors
           doctors={doctors}
           currentDepartmentName={currentDepartmentName}
-          getDoctorsData={getDepartmentsData}
+          getDoctorsData={getDoctorsData}
         />
       )}
     </Layout>

@@ -10,6 +10,14 @@ const Doctor = ({
   currentDepartmentName,
 }) => {
   const [isHoverDoctor, setIsHoverDoctor] = useState(false);
+
+  const doctor = {
+    name: name,
+    description: description,
+    startTime: startTime,
+    endTime: endTime,
+  };
+
   return (
     <div
       className="department-card"
@@ -22,7 +30,7 @@ const Doctor = ({
       <p>{endTime}</p>
       {isHoverDoctor && (
         <button
-          onClick={() => handleDeleteDoctor(currentDepartmentName)}
+          onClick={() => handleDeleteDoctor(currentDepartmentName, doctor)}
           className="delete-department-btn"
         >
           X

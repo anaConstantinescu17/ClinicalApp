@@ -8,7 +8,6 @@ const Departments = ({
   setBtnTxt,
   setCurrentDepartmentName,
 }) => {
-  const [department, setDepartment] = useState();
   const handleDeleteDepartment = async (departmentName) => {
     await fetch(`/api/department/${departmentName}/delete`, {
       method: "DELETE",
