@@ -51,6 +51,7 @@ const App = () => {
       }
     }
   };
+
   return (
     // <Layout>
     //   <Routes>
@@ -76,7 +77,12 @@ const App = () => {
     // </Layout>
 
     <Layout>
-      <Header action={handleBtnClick} btnText={btnText} />
+      <Header
+        action={handleBtnClick}
+        btnText={btnText}
+        action2={() => setShowDepartments(true)}
+        showDepartments={showDepartments}
+      />
 
       {showDepartments && (
         <Departments
