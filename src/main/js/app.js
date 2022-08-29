@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import Header from "./Header";
 import Departments from "./Departments";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import AddForm from "./AddForm";
+import AddForm from "./AddDepartmentForm";
 import Doctors from "./Doctors";
 
 const App = () => {
@@ -80,8 +80,9 @@ const App = () => {
       <Header
         action={handleBtnClick}
         btnText={btnText}
-        action2={() => setShowDepartments(true)}
+        action2={setShowDepartments}
         showDepartments={showDepartments}
+        setBtnTxt = {setBtnTxt}
       />
 
       {showDepartments && (

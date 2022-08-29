@@ -129,6 +129,7 @@
   color: white;
   padding: 10px 10px;
   margin: 0px;
+  margin-bottom: 50px;
   cursor: pointer;
   transition: 0.35s all ease-in-out;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

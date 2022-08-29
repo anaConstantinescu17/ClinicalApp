@@ -27,7 +27,7 @@ const Department = ({
         </button>
       )}
       <Button
-        action={() => getDoctorsData(name) && setBtnTxt("Add Doctor")}
+        action={() => (getDoctorsData(name), setBtnTxt("Add Doctor"))}
         btnText="Check the department"
       />
     </div>

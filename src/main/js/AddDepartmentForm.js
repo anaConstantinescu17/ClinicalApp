@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddForm = ({ isOpen, close, resetDepartments }) => {
+const AddDepartmentForm = ({ isOpen, close, resetDepartments }) => {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -49,9 +49,6 @@ const AddForm = ({ isOpen, close, resetDepartments }) => {
             className="pressBtn"
           />
         </label>
-        <br></br>
-        <br></br>
-        <br></br>
         <label>
           <h2 className="title">Enter description:</h2>
           <br></br>
@@ -63,12 +60,10 @@ const AddForm = ({ isOpen, close, resetDepartments }) => {
             className="pressBtn"
           />
         </label>
-        <br></br>
-        <br></br>
         <input type="submit" value="Submit" className="actionBtn" />
       </form>
     </div>
   );
 };
 
-export default AddForm;
+export default AddDepartmentForm;
