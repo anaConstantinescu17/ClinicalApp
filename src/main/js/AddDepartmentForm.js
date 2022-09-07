@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddDepartmentForm = ({ isOpen, close, resetDepartments }) => {
+const AddDepartmentForm = ({ close, resetDepartments }) => {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -14,11 +14,12 @@ const AddDepartmentForm = ({ isOpen, close, resetDepartments }) => {
 
     console.log(JSON.stringify(inputs));
     await fetch("/api/department/add", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(inputs),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
+      credentials: 'include',
     });
     close();
     resetDepartments();
@@ -31,7 +32,6 @@ const AddDepartmentForm = ({ isOpen, close, resetDepartments }) => {
   //   height: "100vh",
   // };
 
-  if (!isOpen) return null;
   return (
     <div className="form-wrapper">
       <button onClick={() => close()} className="delete-department-btn">

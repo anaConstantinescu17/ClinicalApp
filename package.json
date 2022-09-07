@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "webpack --progress --colors",
-    "start": "webpack-dev-server --progress --colors",
+    "start": "webpack-dev-server --progress --colors --output ./target/classes/static/built/bundle.js",
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
   },
   "devDependencies": {
@@ -37,6 +37,7 @@
     "babel-loader": "^8.0.2",
     "file-loader": "^6.2.0",
     "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2"
   }
 }

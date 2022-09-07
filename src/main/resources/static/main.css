@@ -114,6 +114,7 @@
   width: 100vw;
   overflow: auto;
   z-index: +1;
+  top: 80px;
 }
 
 .form-wrapper form {

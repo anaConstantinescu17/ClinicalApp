@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Layout from "./Layout";
 import Header from "./Header";
 import Departments from "./Departments";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link, HashRouter, useNavigate} from "react-router-dom";
 import AddDepartmentForm from "./AddDepartmentForm";
 import Doctors from "./Doctors";
 import AddDoctorForm from "./AddDoctorForm";
@@ -14,8 +14,8 @@ const App = () => {
   const [btnText, setBtnTxt] = useState("Departments");
   const [departmentForm, setDepartmentForm] = useState(false);
   const [doctorForm, setDoctorForm] = useState(false);
-  const [showDepartments, setShowDepartments] = useState(true);
   const [currentDepartmentName, setCurrentDepartmentName] = useState("");
+  const navigate = useNavigate();
 
   const getDepartmentsData = async () => {
     const request = await fetch("/api/department/all");
@@ -23,11 +23,15 @@ const App = () => {
     setDepartments(data);
   };
 
+  function goToDepartments() {
+    navigate("/departments", { replace: true })
+  }
+
   const getDoctorsData = async (departmentName) => {
     const request = await fetch(`/api/department/${departmentName}/doctors`);
     const data = await request.json();
     setDoctors(data);
-    setShowDepartments(false);
+    // setShowDepartments(false);
   };
 
   const removeStateDepartment = (departmentName) => {
@@ -56,52 +60,35 @@ const App = () => {
   };
 
   return (
-    // <Layout>
-    //   <Routes>
-    //     <Route
-    //       exact
-    //       path="/"
-    //          element={<Header action={handleBtnClick} btnText={btnText} />}
-
-    //      // element={<div>header</div>}
-    //     />
-    //     <Route
-    //       exact
-    //       path="/departments"
-    //       element={
-    //         // <Departments
-    //         //   artments={departments}
-    //         //   removeStateDepartment={removeStateDepartment}
-    //         // />
-    //         <div>dep</div>
-    //       }
-    //     />
-    //   </Routes>
-    // </Layout>
-
     <Layout>
-      <Header
-        action={handleBtnClick}
-        btnText={btnText}
-        action2={setShowDepartments}
-        showDepartments={showDepartments}
-        setBtnTxt={setBtnTxt}
-      />
-
-      {showDepartments && (
-        <Departments
-          departments={departments}
-          removeStateDepartment={removeStateDepartment}
-          getDoctorsData={getDoctorsData}
-          setBtnTxt={setBtnTxt}
-          setCurrentDepartmentName={setCurrentDepartmentName}
+      <Header/>
+      <Routes>
+        <Route path="/" element={<div>Welcome!</div>} />
+        <Route path="departments"
+           element={
+             <Departments
+              departments={departments}
+              removeStateDepartment={removeStateDepartment}
+              getDoctorsData={getDoctorsData}
+              setBtnTxt={setBtnTxt}
+              setCurrentDepartmentName={setCurrentDepartmentName}
+             />
+           }
         />
-      )}
-      <AddDepartmentForm
-        isOpen={departmentForm}
-        close={() => setDepartmentForm(false)}
-        resetDepartments={() => getDepartmentsData()}
-      />
+        <Route path="add-departments"
+           element={
+             <AddDepartmentForm
+               close={() => goToDepartments()}
+               resetDepartments={() => {
+                 getDepartmentsData();
+                 navigate("/departments", { replace: true });
+               }}
+             />
+           }
+        />
+      </Routes>
+
+
 
       <AddDoctorForm
         isOpen={doctorForm}
@@ -110,22 +97,24 @@ const App = () => {
         currentDepartmentName={currentDepartmentName}
       />
 
-      {!showDepartments && (
+      {/*{!showDepartments && (*/}
         <Doctors
           doctors={doctors}
           currentDepartmentName={currentDepartmentName}
           getDoctorsData={getDoctorsData}
         />
-      )}
+      {/*)}*/}
     </Layout>
   );
 };
 
+
+
 export default App;
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("react")
 );

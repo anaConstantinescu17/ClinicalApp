@@ -5,9 +5,16 @@ module.exports = {
   devtool: "sourcemaps",
   cache: true,
   mode: "development",
+
   output: {
-    path: __dirname,
-    filename: "./src/main/resources/static/built/bundle.js",
+    path: path.join(__dirname, 'src/main/resources/static/built/'),
+    filename: 'bundle.js',
+    publicPath: '/built/',
+  },
+  devServer: {
+    contentBase: [path.join(__dirname, 'src/main/resources/templates'), path.join(__dirname, 'src/main/resources/static')],
+    compress: true,
+    port: 9000,
   },
   module: {
     rules: [

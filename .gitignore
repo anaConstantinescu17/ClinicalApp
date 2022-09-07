@@ -1,2 +1,5 @@
 /src/main/resources/static/built/
 /node/
+/node_modules/
+/target/
+/.idea/
